@@ -5,8 +5,8 @@
    Tutorial 11
    Case Problem 1
 
-   Author: 
-   Date:   
+   Author: Ariahnnah Porras
+   Date:  3/11/20 
    
    Filename: bw_review.js
 	
@@ -48,4 +48,4 @@ function countCharacters(textStr) {
    var commentregx = /\s/g;
    var chars = textStr.replace(commentregx, "");
    return chars.length;
-}   
+}
