@@ -4,14 +4,12 @@
    New Perspectives on HTML5, CSS3 and JavaScript 6th Edition
    Tutorial 11
    Case Problem 2
-
-   Author: 
-   Date:   
+   Author: Ariahnnah Porras
+   Date:   3-12-2020
    
    Filename: mt_calc.js
 	
    Functions List:
-
    init()
       Initializes the contents of the web page and sets up the
       event handlers
@@ -27,12 +25,26 @@
       
    evalEq(textStr, decimals) 
       Evaluates the equation in textStr, returning a value to the number of decimals specified by the decimals parameter
-
    lastEq(textStr) 
       Returns the previous expression from the list of expressions in the textStr parameter
-
 */
+window.onload = init();
+function init() { //Initializes the contents of the web page and sets up the event handlers
+var calcButtons = document.querySelectorAll("calcButton");
+for (var i = 0; i < calcButtons.length; i++) {
+   calcButtons[i].style.cursor = "click";
 
+   calcKeys()[i].addEventListener("calcWindow");
+
+}
+}
+
+function buttonClick(e){ //Adds functions to the buttons clicked within the calcutlor
+
+   var calcValue = "calcWindow";
+   var calcDecimal = "decimals"; 
+   buttonValue()[i].addEventListener("calcWindow");
+}
 
 
 
@@ -40,60 +52,19 @@
 
 /* ===================================================================== */
 
-function init() {
-   var calcButtons = document.querySelectorAll(".calcButtons");
-
-   for (var i = 0; i < calcButtons.length; i++) {
-      calcButtons[i].addEventListener("click", buttonClick);
-   }
-
-   document.getElementById("calcWindow").addEventListener("keydown", calcKeys);
-}
-
-function buttonClick(event) {
-   //These are shorthands to make the later code cleaner when selecting these parts of the DOM
-   var calcValue = document.getElementById("calcWindow").getAttribute("value");
-   var calcDecimal = document.getElementById("decimals").getAttribute("value");
-   var buttonValue = event.target.getAttribute("value"); //This refers to the button clicked in the init() function
-
-   switch (buttonValue) {
-      case "del":
-         calcValue = ""
-         break;
-      case "bksp":
-         calcValue = eraseChar(calcValue);
-         break;
-      case "enter":
-         calcValue = " = " + evalEq(calcValue, calcDecimal) + "\n";
-         break;
-      case "prev":
-         calcValue = lastEq(calcValue);
-         break;
-      default:
-         calcValue += buttonValue;
-         break;
-   }
-   document.querySelector("textarea#calcWindow").setAttribute("value") = calcValue;
-   document.getElementById("calcWindow").focus();
-}
-
-function calcKeys() { }
-
-/* ===================================================================== */
-
-function eraseChar(textStr) {
+function eraseChar(textStr) { 
    return textStr.substr(0, textStr.length - 1);
 }
 
 function evalEq(textStr, decimals) {
    var lines = textStr.split(/\r?\n/);
-   var lastLine = lines[lines.length - 1];
+   var lastLine = lines[lines.length-1];
    var eqValue = eval(lastLine);
    return eqValue.toFixed(decimals);
-}
+}  
 
 function lastEq(textStr) {
    var lines = textStr.split(/\r?\n/);
-   var lastExp = lines[lines.length - 2];
+   var lastExp = lines[lines.length-2];
    return lastExp.substr(0, lastExp.indexOf("=")).trim();
 }
